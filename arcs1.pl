@@ -26,9 +26,10 @@ relations(X,Y):-
 	relations(X,Y,1).
 
 relations(X,Y,Z):-
-	relations(X,Y,Z,[]);
+	relations(X,Y,Z,[]),!;
 	Z1 is Z+1,
-	relations(X,Y,Z1,[]).
+	Z1 < 8,
+	relations(X,Y,Z1).
 	
 relations(X,Y,_,L):-
 	arc(X,V,Y),
@@ -58,7 +59,7 @@ relations(X,Y,Z,L):-
 	Z >0,
 	\+already_has(W,V,X,L),
 	append(L,[W,V,X],T),
-	relations(W,Y,Z-1,T).	
+	relations(W,Y,Z-1,T).
 
 	 
 	

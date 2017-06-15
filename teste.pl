@@ -89,3 +89,14 @@ ancestor(X,Y,father(X)) :- father(X,Y).
 ancestor(X,Y,mother(X)) :- mother(X,Y).
 ancestor(X,Y,father(Z2)) :- father(Z,Y), ancestor(X,Z,Z2).
 ancestor(X,Y,mother(Z2)) :- mother(Z,Y), ancestor(X,Z,Z2).
+
+%	arc(W,V,Y),
+%	Z>0,
+%	\+already_has(W,V,Y,L),
+%	append(L,[W,V,Y],T),
+%	relations(X,W,Z-1,T);
+%	arc(Y,V,W),
+%	Z >0,
+%	\+already_has(Y,V,W,L),
+%	append(L,[Y,V,W],T),
+%	relations(X,W,Z-1,T).

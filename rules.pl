@@ -1,3 +1,5 @@
+%Regra que lê a knowledge base 'NELL' em csv, cria os predicados arc(entidade1,relacao,entidade2) para cada linha
+%e adiciona-os aos fatos
 import:-
     csv_read_file('NELL1.csv', Data, [functor(arc)]),
     maplist(assert, Data).
