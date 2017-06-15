@@ -13,7 +13,19 @@ write_list([E1,R,E2|T]):-
 	write('\n'),
 	write_list(T).
 	
-relations(X,Y,Z,L):-
+already_has(_,_,_,[]):-false.
+
+already_has(X,Y,Z,[U,V,W|T]):-
+	X = U,
+	Y = V,
+	Z = W,
+	true;
+	already_has(X,Y,Z,T).
+
+relations(X,Y):-
+	relations(X,Y,5,[]).
+	
+relations(X,Y,_,L):-
 	arc(X,V,Y),
 	write_list(L),
 	write(X),
@@ -22,7 +34,7 @@ relations(X,Y,Z,L):-
 	write('-'),
 	write(Y).
 	
-relations(X,Y,Z,L):-
+relations(X,Y,_,L):-
 	arc(Y,V,X),
 	write_list(L),
 	write(Y),
@@ -34,19 +46,23 @@ relations(X,Y,Z,L):-
 relations(X,Y,Z,L):-
 	arc(X,V,W),
 	Z>0,
-	append([X,V,W],L,T),
+	\+(already_has(X,V,W,L)),
+	append(L,[X,V,W],T),
 	relations(W,Y,Z-1,T);
 	arc(W,V,X),
 	Z >0,
-	append([W,V,X],L,T),
+	\+already_has(W,V,X,L),
+	append(L,[W,V,X],T),
 	relations(W,Y,Z-1,T);	
 	arc(W,V,Y),
 	Z>0,
-	append([W,V,Y],L,T),
+	\+already_has(W,V,Y,L),
+	append(L,[W,V,Y],T),
 	relations(X,W,Z-1,T);
 	arc(Y,V,W),
 	Z >0,
-	append([Y,V,W],L,T),
+	\+already_has(Y,V,W,L),
+	append(L,[Y,V,W],T),
 	relations(X,W,Z-1,T).
 
 	 
