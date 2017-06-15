@@ -42,7 +42,7 @@ relations(X,Y):-
 relations(X,Y,Z):-
 	relations(X,Y,Z,[]),!;
 	Z1 is Z+1,
-	Z1<100,
+	Z1<7,
 	relations(X,Y,Z1).
 	
 %Chamada de relations/4 que checa se há uma relação V entre as entidades X e Y,
