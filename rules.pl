@@ -1,5 +1,5 @@
 %Regra que lê a knowledge base 'NELL' em csv, cria os predicados arc(entidade1,relacao,entidade2) para cada linha
-%e adiciona-os aos fatos
+%e adiciona-os aos fatos.
 %Para que funcione corretamente é necessário ter o caminho correto para o arquivo 'NELL.csv'
 import:-
     csv_read_file('NELL.csv', Data, [functor(arc)]),
@@ -22,7 +22,7 @@ write_list([E1,R,E2|T]):-
 already_has(_,_,_,[]):-false.
 
 %Checa se a relação X, Y, Z já está na lista retornando: true caso esteja
-%							 false caso não esteja
+% false caso não esteja
 already_has(X,Y,Z,[U,V,W|T]):-
 	X = U,
 	Y = V,
