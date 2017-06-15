@@ -23,7 +23,12 @@ already_has(X,Y,Z,[U,V,W|T]):-
 	already_has(X,Y,Z,T).
 
 relations(X,Y):-
-	relations(X,Y,5,[]).
+	relations(X,Y,1).
+
+relations(X,Y,Z):-
+	relations(X,Y,Z,[]);
+	Z1 is Z+1,
+	relations(X,Y,Z1,[]).
 	
 relations(X,Y,_,L):-
 	arc(X,V,Y),
@@ -53,17 +58,7 @@ relations(X,Y,Z,L):-
 	Z >0,
 	\+already_has(W,V,X,L),
 	append(L,[W,V,X],T),
-	relations(W,Y,Z-1,T);	
-	arc(W,V,Y),
-	Z>0,
-	\+already_has(W,V,Y,L),
-	append(L,[W,V,Y],T),
-	relations(X,W,Z-1,T);
-	arc(Y,V,W),
-	Z >0,
-	\+already_has(Y,V,W,L),
-	append(L,[Y,V,W],T),
-	relations(X,W,Z-1,T).
+	relations(W,Y,Z-1,T).	
 
 	 
 	

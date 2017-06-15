@@ -89,8 +89,3 @@ ancestor(X,Y,father(X)) :- father(X,Y).
 ancestor(X,Y,mother(X)) :- mother(X,Y).
 ancestor(X,Y,father(Z2)) :- father(Z,Y), ancestor(X,Z,Z2).
 ancestor(X,Y,mother(Z2)) :- mother(Z,Y), ancestor(X,Z,Z2).
-
-:- use_module(library(csv)).
-import:-
-    csv_read_file('C:\Users\Daniel\Documents\GitHub\KBpathsProLog\NELL.csv', Data, [functor(fact), separator(0';)]),
-    maplist(assert, Data).
