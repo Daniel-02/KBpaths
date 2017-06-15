@@ -2,7 +2,7 @@ import:-
     csv_read_file('NELL1.csv', Data, [functor(arc)]),
     maplist(assert, Data).
 	
-%Cria a lista que vai ser usada para guardar o caminho percorrido
+%Caso base para o write_list/1
 write_list([]).
 
 %Regra que dá print na lista
@@ -44,8 +44,7 @@ relations(X,Y,Z):-
 	relations(X,Y,Z1).
 	
 %Chamada de relations/4 que checa se há uma relação V entre as entidades X e Y,
-% nesta ordem, e serve como critério de parada. Se houver, toda a lista de triplas
-% seguida da última relação.
+% nesta ordem, e serve como critério de parada. Se houver, escreve toda a lista de % triplas seguida da última relação.
 relations(X,Y,_,L):-
 	arc(X,V,Y),
 	write_list(L),
